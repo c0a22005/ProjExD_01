@@ -9,13 +9,15 @@ def main():
     bg_img = pg.image.load("ex01/fig/pg_bg.jpg")#練習1
     kk_img = pg.image.load("ex01/fig/3.png")#練習2　こうかとん画像読み込み
     kk_img = pg.transform.flip(kk_img, True, False)#練習2　こうかとん反転
+    kk_imgs = [kk_img, pg.transform.rotozoom(kk_img, 10, 1.0)]
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         screen.blit(bg_img, [0, 0]) #スクリーンにbg.imageを張り付ける 練習4
-        screen.blit(kk_img,[300,200])
+        screen.blit(kk_imgs[tmr%2],[300,200])
+        
         pg.display.update()
         tmr += 1        
         clock.tick(10)
